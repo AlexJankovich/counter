@@ -1,20 +1,20 @@
 import React from "react";
 import './Button.css'
+import {stateType} from "./Redux/redux";
+
 
 type ButtonsType = {
-    count: number
-    maxCount:number
-    Upp: () => void
-    Reset: () => void
+   status: stateType
+    callBack:()=>void
+    isDisabled:boolean
+    btnTitle:string
 }
-export const Buttons = (props: ButtonsType) => {
-    return <div className='buttons'>
+
+export const Button = (props: ButtonsType) => {
+    return <div className='button'>
         <button type='button'
-                disabled={props.count >= props.maxCount ? true : false}
-                onClick={props.Upp}>inc
-        </button>
-        <button type='button'
-                onClick={props.Reset}>reset
+                disabled={props.isDisabled}
+                onClick={props.callBack}>{props.btnTitle}
         </button>
     </div>
 }

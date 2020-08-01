@@ -1,8 +1,60 @@
-.App{
-  width: 500px;
+
+.wrapper{
+  display: flex;
+  flex-direction: row;
   margin: 200px auto;
   border: 2px solid;
-  padding: 20px;
+  border-radius: 10px;
+  width: fit-content;
+  background-color: dimgray;
+}
+.App{
+  display: flex;
+  border: 2px solid;
+  padding: 10px;
+  border-radius: 10px;
+  flex-direction: column;
+  width: 250px;
+  margin: 25px;
+  justify-content: space-between;
+  background-color: darkgray;
+}
+.buttons{
+  display: flex;
+  border: 2px solid;
+  font-size: 50px;
+  text-align: center;
+  margin: 10px;
+  justify-content: space-evenly;
+  padding: 10px;
+  border-radius: 10px;
+  height: available;
+  background-color: lightslategray;
 }
 
+.inputWindow{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid;
+  border-radius: 10px;
+  padding: 5px;
+  margin: 10px;
+  background-color: lightslategray;
+}
 
+.inputWindow span{
+  margin: 10px 10px;
+  font-size: 25px;
+  color: azure;
+}
+
+.inputWindow input{
+  width: 50px;
+  margin: 5px;
+  height: 30px;
+  border: 2px solid;
+  border-radius: 10px;
+}
+.error{
+  background-color: red;
+}
