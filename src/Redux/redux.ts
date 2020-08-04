@@ -5,7 +5,7 @@ type btnTitleType = {
 }
 
 export type stateType = {
-    value: number | string
+    value: number
     maxValue: number
     btnTitle?: btnTitleType
     isDisabled: boolean

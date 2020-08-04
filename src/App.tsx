@@ -1,10 +1,9 @@
 import React, {ChangeEvent, useState} from 'react';
 import './App.css';
-import {Display} from "./Display";
-import {Button} from "./Buttons";
+import {Display} from "./common/Display";
+import {Button} from "./common/Buttons";
 import {stateType} from "./Redux/redux";
 import {InputWindow} from "./InputWindow";
-
 
 type AppStoreType = {
     store: stateType
@@ -12,40 +11,35 @@ type AppStoreType = {
 
 const App: React.FC<AppStoreType> = (props) => {
 
+    let x:string | null  = localStorage.getItem('value')
+    let getS: stateType = x && JSON.parse(x)
+    console.log(getS)
+    // let startValue = props.store || getS
 
-    // localStorage.setItem('value', JSON.stringify(userSet))
-    // let x:any = localStorage.getItem('value')
-    // let getS:any = JSON.parse(x)
-    // userSet=getS
-
-    let x:any = localStorage.getItem('value')
-    let getS:any = JSON.parse(x)
-
-    let [userSet, setUserSet] = useState<stateType>(getS||props.store)
-    let inputValueMax = (e: ChangeEvent<HTMLInputElement>) => {
-        userSet.maxValue = +e.currentTarget.value
-        setUserSet({...userSet})
-        // console.log('want change')
-    }
-    let inputValueStart = (e: ChangeEvent<HTMLInputElement>) => {
-        userSet.value = +e.currentTarget.value
+    let [userSet, setUserSet] = useState<stateType>({...props.store || getS})
+    let inputValueMax = (value:number) => {
+        // debugger
+        userSet.maxValue = value
         setUserSet({...userSet})
     }
-    let setBtn = () => {
+    let inputValueStart = (value:number) => {
+        userSet.value = value
+        setUserSet({...userSet})
+    }
+    function setBtn () {
         props.store.maxValue = userSet.maxValue
         props.store.value = userSet.value
         localStorage.setItem('value', JSON.stringify(userSet))
         setUserSet({...userSet})
         status = userSet
         setStatus({...status})
-        // console.log(status)
+        Reset()
         console.log(userSet)
     }
 
-
     let newStatus1 = props.store
 
-    let [status, setStatus] = useState<stateType>(newStatus1);
+    let [status, setStatus] = useState<stateType>({...newStatus1});
 
     let Upp = () => {
         status.value = +status.value + 1
@@ -53,7 +47,7 @@ const App: React.FC<AppStoreType> = (props) => {
         console.log(status.value)
     };
     let Reset = () => {
-        status.value = props.store.value
+        status.value = userSet.value
         console.log("isReset")
         setStatus({...status})
     };
@@ -89,7 +83,7 @@ const App: React.FC<AppStoreType> = (props) => {
         countDisabled=false
         userSetDisabled = false
     }
-
+    // debugger
     return (
         <div className='wrapper'>
             <div className='App'>
@@ -97,7 +91,7 @@ const App: React.FC<AppStoreType> = (props) => {
                     <InputWindow userSet={userSet}
                                  onChangeMax={inputValueMax}
                                  onChangeStart={inputValueStart}
-                                 // styleError={styleError}
+                                 styleError={styleError}
                     />
                 </div>
                 <div className='buttons'>
@@ -126,7 +120,6 @@ const App: React.FC<AppStoreType> = (props) => {
         </div>
     );
 }
-
 
 export default App;
 

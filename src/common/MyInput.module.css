@@ -1,0 +1,12 @@
+.wrapper{
+    display: inline-block;
+    padding: 2px;
+}
+input{
+    border: 1px solid;
+    border-radius: 5px;
+}
+
+.red{
+    background-color: red;
+}

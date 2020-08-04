@@ -1,7 +1,6 @@
 import React from "react";
 import './Button.css'
-import {stateType} from "./Redux/redux";
-
+import {stateType} from "../Redux/redux";
 
 type ButtonsType = {
    status: stateType
@@ -11,6 +10,8 @@ type ButtonsType = {
 }
 
 export const Button = (props: ButtonsType) => {
+
+
     return <div className='button'>
         <button type='button'
                 disabled={props.isDisabled}
